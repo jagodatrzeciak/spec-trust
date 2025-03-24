@@ -14,7 +14,6 @@ import {
 export default function DeltaScatterPlot() {
     const { fileName, delta, deltaSe, sd, inverseSigma, sdMean, inverseSigmaMean } = useSelector((state) => state.csv);
 
-    console.log(delta.length)
     const chartData = [
         ...delta.map((value, index) => ({
             x: index + 1,
@@ -53,7 +52,7 @@ export default function DeltaScatterPlot() {
 
     return (
         <div className="mt-4 col-10 mb-3">
-            <h5 className="text-center">{fileName}</h5>
+            <h5 className="text-center">{fileName !== "manual_input" ? fileName : ""}</h5>
             <ResponsiveContainer width="100%" height={300}>
                 <ScatterChart>
                     <CartesianGrid strokeDasharray="3 4" />

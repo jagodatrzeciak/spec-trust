@@ -55,20 +55,13 @@ export default function CSVUploader({error}) {
     };
 
     return (
-        <div className="mt-3 col-8">
-            <h4 className="ms-1">Upload CSV File</h4>
-            <p className="ms-1">
-                The uploaded CSV file should contain the following key columns:
-                <br/> • <span className={`px-2 rounded bg-secondary-subtle text-dark`}>spl_r</span>, <span className={`px-2 rounded bg-secondary-subtle text-dark`}>std1_r</span>, <span className={`px-2 rounded bg-secondary-subtle text-dark`}>std2_r</span> - isotope ratios of sample and bracketing standards,
-                <br/> • <span className={`px-2 rounded bg-secondary-subtle text-dark`}>spl_se</span>, <span className={`px-2 rounded bg-secondary-subtle text-dark`}>std1_se</span>, <span className={`px-2 rounded bg-secondary-subtle text-dark`}>std2_se</span> - its standard errors.
-            </p>
+        <div>
             <input
                 type="file"
                 accept=".csv"
                 className="form-control bg-light"
                 onChange={handleFileUpload}
             />
-            {error && <h6 className="text-danger mt-2">{error}</h6>}
         </div>
     );
 }
