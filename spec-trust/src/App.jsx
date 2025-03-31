@@ -41,9 +41,19 @@ function App() {
                     </li>
                 </ul>
 
-                <div className="card p-4 col-8">
-                    {activeTab === "manual" && <SpreadsheetComponent/>}
-                    {activeTab === "upload" && <CSVUploader/>}
+                <div className="d-flex align-items-start gap-4 mt-3">
+                    <div className="card p-4 col-8">
+                        {activeTab === "manual" && <SpreadsheetComponent />}
+                        {activeTab === "upload" && <CSVUploader />}
+                    </div>
+
+                    <div className="col-3">
+                        <img
+                            src="/cat_gif.gif"
+                            alt="Cat GIF"
+                            style={{ width: "80%", borderRadius: "10px" }}
+                        />
+                    </div>
                 </div>
 
                 {error && <h6 className="text-danger mt-2">{error}</h6>}
