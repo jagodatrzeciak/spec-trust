@@ -12,8 +12,9 @@ const csvSlice = createSlice({
         sd: null,
         sdMean: null,
         mc: null,
+        mcMean: null,
         inverseSigma: null,
-        inverseSigmaMean: null
+        inverseSigmaMean: null,
     },
     reducers: {
         setCSVData: (state, action) => {
@@ -21,12 +22,12 @@ const csvSlice = createSlice({
             state.headers = action.payload.headers;
             state.data = action.payload.data;
 
-            const spl_r_index = state.headers.indexOf("spl_r");
-            const std1_r_index = state.headers.indexOf("std1_r");
-            const std2_r_index = state.headers.indexOf("std2_r");
-            const spl_se_index = state.headers.indexOf("spl_se");
-            const std1_se_index = state.headers.indexOf("std1_se");
-            const std2_se_index = state.headers.indexOf("std2_se");
+            const spl_r_index = state.headers.indexOf("sample_ratio");
+            const std1_r_index = state.headers.indexOf("standard1_ratio");
+            const std2_r_index = state.headers.indexOf("standard2_ratio");
+            const spl_se_index = state.headers.indexOf("sample_se");
+            const std1_se_index = state.headers.indexOf("standard1_se");
+            const std2_se_index = state.headers.indexOf("standard2_se");
 
             state.delta = state.data[spl_r_index].map((spl_r_value, rowIndex) => {
                 const std1_value = parseFloat(state.data[std1_r_index][rowIndex]) || 0;
@@ -62,12 +63,42 @@ const csvSlice = createSlice({
             const wi = state.deltaSe.map(v => 1 / v)
             state.inverseSigma = Math.sqrt(1 / wi.reduce((sum, w) => sum + w, 0))
             state.inverseSigmaMean = state.delta.reduce((sum, val, i) => sum + val * wi[i], 0) / wi.reduce((sum, w) => sum + w, 0)
+
+            // mc
+            const n = 10000
+            const meanDelta = state.delta.reduce((a, b) => a + b, 0) / state.delta.length
+
+            const simulations = []
+            for (let i = 0; i < n; i++) {
+                const noise = state.deltaSe.map(se => randomNormal(0, se));
+                const simulated = state.delta.map((val, idx) => val + noise[idx] - meanDelta);
+                const sd = standardDeviation(simulated);
+                simulations.push(sd);
+            }
+
+            state.mc = simulations.reduce((a, b) => a + b, 0) / n
+            state.mcMean = meanDelta
         },
         setError: (state, action) => {
             state.error = action.payload.error;
         }
     },
 });
+
+function randomNormal(mean = 0, std = 1) {
+    const u1 = Math.random();
+    const u2 = Math.random();
+
+    return mean + std * Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2)
+}
+
+function standardDeviation(arr) {
+    const mean = arr.reduce((a, b) => a + b, 0) / arr.length;
+    const sqDiffs = arr.map(x => (x - mean) ** 2);
+    const avgSqDiff = sqDiffs.reduce((a, b) => a + b, 0) / arr.length;
+
+    return Math.sqrt(avgSqDiff);
+}
 
 export const { setCSVData, setError } = csvSlice.actions;
 export default csvSlice.reducer;

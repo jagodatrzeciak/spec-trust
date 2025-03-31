@@ -15,8 +15,8 @@ export default function CSVTable({headers, data, delta, deltaSe, isDarkMode}) {
                                 {headers.map((header, index) => (
                                     <th key={index}>{header}</th>
                                 ))}
-                                <th>Delta</th>
-                                <th>Delta SE</th>
+                                <th>δ</th>
+                                <th>SE_δ</th>
                             </tr>
                             </thead>
                             <tbody>

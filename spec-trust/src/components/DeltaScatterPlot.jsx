@@ -12,7 +12,7 @@ import {
 } from "recharts";
 
 export default function DeltaScatterPlot() {
-    const { fileName, delta, deltaSe, sd, inverseSigma, sdMean, inverseSigmaMean } = useSelector((state) => state.csv);
+    const { fileName, delta, deltaSe, sd, inverseSigma, sdMean, inverseSigmaMean, mc, mcMean } = useSelector((state) => state.csv);
 
     const chartData = [
         ...delta.map((value, index) => ({
@@ -20,30 +20,38 @@ export default function DeltaScatterPlot() {
             y: value,
             error: deltaSe[index] || 0,
             label: "Subsequent measurements",
-            color: "#8884d8",
+            color: "#393939",
         })),
         {
             x: delta.length + 1,
             y: sdMean,
             error: sd,
             label: "SD",
-            color: "#ff7300",
+            color: "#6ca6cd",
         },
         {
             x: delta.length + 2,
             y: inverseSigmaMean,
             error: inverseSigma,
             label: "Inverse Sigma",
-            color: "#82ca9d",
+            color: "#ad7f97",
         },
+        {
+            x: delta.length + 3,
+            y: mcMean,
+            error: mc,
+            label: "MC",
+            color: "#ff4c4c",
+        }
     ];
 
     const deltaPoints = chartData.filter((point) => point.label === "Subsequent measurements");
     const sdPoint = chartData.filter((point) => point.label === "SD");
     const inverseSigmaPoint = chartData.filter((point) => point.label === "Inverse Sigma");
+    const mcPoint = chartData.filter((point) => point.label === "MC");
 
     const customLegendItems = chartData
-        .filter((d) => d.label === "SD" || d.label === "Inverse Sigma")
+        .filter((d) => d.label === "SD" || d.label === "Inverse Sigma" || d.label === "MC")
         .map((d) => ({
             value: d.label,
             type: "circle",
@@ -51,7 +59,7 @@ export default function DeltaScatterPlot() {
         }));
 
     return (
-        <div className="mt-4 col-10 mb-3">
+        <div className="mt-4 col-8 mb-1">
             <h5 className="text-center">{fileName !== "manual_input" ? fileName : ""}</h5>
             <ResponsiveContainer width="100%" height={300}>
                 <ScatterChart>
@@ -66,8 +74,8 @@ export default function DeltaScatterPlot() {
                     />
                     <YAxis
                         dataKey="y"
-                        name="δ ± σδ"
-                        label={{ value: "δ ± σδ", angle: -90, position: "insideLeft", dy: -10 }}
+                        name="δ ± SE_δ"
+                        label={{ value: "δ ± SE_δ", angle: -90, position: "insideLeft", dy: -10 }}
                     />
                     <Tooltip cursor={{ strokeDasharray: "3 3" }} />
                     <Legend
@@ -88,16 +96,20 @@ export default function DeltaScatterPlot() {
                         )}
                     />
 
-                    <Scatter name="Delta" data={deltaPoints} fill="#8884d8">
-                        <ErrorBar dataKey="error" width={4} stroke="#8884d8" />
+                    <Scatter name="Delta" data={deltaPoints} fill="#393939">
+                        <ErrorBar dataKey="error" width={4} stroke="#393939" />
                     </Scatter>
 
-                    <Scatter name="SD" data={sdPoint} fill="#ff7300">
-                        <ErrorBar dataKey="error" width={4} stroke="#ff7300" />
+                    <Scatter name="SD" data={sdPoint} fill="#6ca6cd">
+                        <ErrorBar dataKey="error" width={4} stroke="#6ca6cd" />
                     </Scatter>
 
-                    <Scatter name="Inverse Sigma" data={inverseSigmaPoint} fill="#82ca9d">
-                        <ErrorBar dataKey="error" width={4} stroke="#82ca9d" />
+                    <Scatter name="Inverse Sigma" data={inverseSigmaPoint} fill="#ad7f97">
+                        <ErrorBar dataKey="error" width={4} stroke="#ad7f97" />
+                    </Scatter>
+
+                    <Scatter name="MC" data={mcPoint} fill="#ff4c4c">
+                        <ErrorBar dataKey="error" width={4} stroke="#ff4c4c" />
                     </Scatter>
                 </ScatterChart>
             </ResponsiveContainer>

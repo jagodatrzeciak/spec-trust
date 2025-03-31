@@ -5,7 +5,7 @@ import Spreadsheet from "react-spreadsheet";
 
 export default function SpreadsheetComponent() {
     const dispatch = useDispatch();
-    const requiredColumns = ["spl_r", "std1_r", "std2_r", "spl_se", "std1_se", "std2_se"];
+    const requiredColumns = ["sample_ratio", "sample_se", "standard1_ratio", "standard1_se", "standard2_ratio", "standard2_se"];
 
     const [ data, setData ] = useState(
         Array(5).fill(requiredColumns.map(() => ({value: ""})))

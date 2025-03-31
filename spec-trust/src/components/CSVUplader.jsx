@@ -2,9 +2,9 @@ import { useDispatch } from "react-redux";
 import { setCSVData, setError } from "../redux/csvSlice.js";
 import Papa from "papaparse";
 
-export default function CSVUploader({error}) {
+export default function CSVUploader() {
     const dispatch = useDispatch();
-    const requiredColumns = ["spl_r", "std1_r", "std2_r", "spl_se", "std1_se", "std2_se"];
+    const requiredColumns = ["sample_ratio", "standard1_ratio", "standard2_ratio", "sample_se", "standard1_se", "standard2_se"];
 
     const handleFileUpload = (event) => {
         const file = event.target.files[0];
@@ -56,6 +56,16 @@ export default function CSVUploader({error}) {
 
     return (
         <div>
+            <p className="ms-1 mb-3">
+                The uploaded CSV file should contain the following key columns:
+                <br/> • <span className={`px-2 rounded bg-secondary-subtle text-dark`}>sample_ratio</span>, <span
+                className={`px-2 rounded bg-secondary-subtle text-dark`}>standard1_ratio</span>, <span
+                className={`px-2 rounded bg-secondary-subtle text-dark`}>standard2_ratio</span> - isotope ratios of sample
+                and bracketing standards,
+                <br/> • <span className={`px-2 rounded bg-secondary-subtle text-dark`}>sample_se</span>, <span
+                className={`px-2 rounded bg-secondary-subtle text-dark`}>standard1_se</span>, <span
+                className={`px-2 rounded bg-secondary-subtle text-dark`}>standard2_se</span> - its standard errors.
+            </p>
             <input
                 type="file"
                 accept=".csv"
