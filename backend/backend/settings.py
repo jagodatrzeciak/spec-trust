@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["https://spec-trust.vercel.app",
                  "http://localhost:5173",
-                 "spec-trust.onrender.com'"]
+                 "spec-trust.onrender.com"]
 
 
 # Application definition
@@ -130,5 +130,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOWED_ORIGINS = [
     "https://spec-trust.vercel.app",
     "http://localhost:5173",
-    "spec-trust.onrender.com'"
+    "spec-trust.onrender.com"
 ]
