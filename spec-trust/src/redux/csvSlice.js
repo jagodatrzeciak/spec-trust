@@ -1,5 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 
+const API_BASE = import.meta.env.VITE_API_URL;
+
 const csvSlice = createSlice({
     name: "csv",
     initialState: {
@@ -48,7 +50,7 @@ export const analyzeCSV = ({ fileName, headers, data }) => async dispatch => {
     try {
         const formattedHeaders = headers.map(h => h.replace(" ", "_").toLowerCase());
 
-        const response = await fetch("http://127.0.0.1:8000/api/analyze/", {
+        const response = await fetch(API_BASE + "analyze/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
