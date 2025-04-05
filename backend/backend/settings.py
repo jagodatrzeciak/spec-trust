@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-d)6*arktio%(on)y(^b6dbgv1d4apqo9$pbey-yu$78d&xvq_t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["https://spec-trust.vercel.app",
+                 "http://localhost:5173",
+                 "spec-trust.onrender.com'"]
 
 
 # Application definition
