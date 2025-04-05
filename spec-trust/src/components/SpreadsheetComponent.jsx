@@ -1,11 +1,11 @@
 import { useDispatch } from "react-redux";
-import { setCSVData, setError } from "../redux/csvSlice.js";
+import {setCSVData, setError} from "../redux/csvSlice.js";
 import {useEffect, useState} from "react";
 import Spreadsheet from "react-spreadsheet";
 
 export default function SpreadsheetComponent() {
     const dispatch = useDispatch();
-    const requiredColumns = ["sample_ratio", "sample_se", "standard1_ratio", "standard1_se", "standard2_ratio", "standard2_se"];
+    const requiredColumns = ["Standard1 Ratio", "Standard1 SE", "Sample Ratio", "Sample SE", "Standard2 Ratio", "Standard2 SE"];
 
     const [ data, setData ] = useState(
         Array(5).fill(requiredColumns.map(() => ({value: ""})))

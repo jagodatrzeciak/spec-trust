@@ -15,5 +15,37 @@
 }
 
 .mc {
-    color: #ff4c4c;
+    color: #ff8f89;
+}
+
+.nav-link {
+    color: black;
+}
+
+.nav-link:hover {
+    color: grey;
+}
+
+.nav-link-dark-mode {
+    color: white;
+}
+
+.legend-dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.legend-dot.sd {
+    background-color: #5DAEDC;
+}
+
+.legend-dot.inverse-sigma {
+    background-color: #A680A6;
+}
+
+.legend-dot.mc {
+    background-color: #F28B82;
 }

@@ -41,7 +41,7 @@ export default function DeltaScatterPlot() {
             y: mcMean,
             error: mc,
             label: "MC",
-            color: "#ff4c4c",
+            color: "#ff8f89",
         }
     ];
 
@@ -50,19 +50,11 @@ export default function DeltaScatterPlot() {
     const inverseSigmaPoint = chartData.filter((point) => point.label === "Inverse Sigma");
     const mcPoint = chartData.filter((point) => point.label === "MC");
 
-    const customLegendItems = chartData
-        .filter((d) => d.label === "SD" || d.label === "Inverse Sigma" || d.label === "MC")
-        .map((d) => ({
-            value: d.label,
-            type: "circle",
-            color: d.color,
-        }));
-
     return (
-        <div className="mt-4 col-8 mb-1">
+        <div className="mb-1">
             <h5 className="text-center">{fileName !== "manual_input" ? fileName : ""}</h5>
             <ResponsiveContainer width="100%" height={300}>
-                <ScatterChart>
+                <ScatterChart margin={{ bottom: 10, left: 10}}>
                     <CartesianGrid strokeDasharray="3 4" />
                     <XAxis
                         dataKey="x"
@@ -75,26 +67,9 @@ export default function DeltaScatterPlot() {
                     <YAxis
                         dataKey="y"
                         name="δ ± SE_δ"
-                        label={{ value: "δ ± SE_δ", angle: -90, position: "insideLeft", dy: -10 }}
+                        label={{ value: "δ ± SE_δ", angle: -90, position: "insideLeft", dy: 0, style: { textAnchor: 'middle' } }}
                     />
                     <Tooltip cursor={{ strokeDasharray: "3 3" }} />
-                    <Legend
-                        content={() => (
-                            <ul style={{ display: "flex", gap: "1rem", paddingLeft: 20 }}>
-                                {customLegendItems.map((item, index) => (
-                                    <li key={index} style={{ listStyle: "none", display: "flex", alignItems: "center", gap: 5 }}>
-                                        <div style={{
-                                            width: 10,
-                                            height: 10,
-                                            borderRadius: "50%",
-                                            backgroundColor: item.color,
-                                        }} />
-                                        <span>{item.value}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        )}
-                    />
 
                     <Scatter name="Delta" data={deltaPoints} fill="#393939">
                         <ErrorBar dataKey="error" width={4} stroke="#393939" />
@@ -108,8 +83,8 @@ export default function DeltaScatterPlot() {
                         <ErrorBar dataKey="error" width={4} stroke="#ad7f97" />
                     </Scatter>
 
-                    <Scatter name="MC" data={mcPoint} fill="#ff4c4c">
-                        <ErrorBar dataKey="error" width={4} stroke="#ff4c4c" />
+                    <Scatter name="MC" data={mcPoint} fill="#ff8f89">
+                        <ErrorBar dataKey="error" width={4} stroke="#ff8f89" />
                     </Scatter>
                 </ScatterChart>
             </ResponsiveContainer>

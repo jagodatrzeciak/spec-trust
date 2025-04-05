@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 
 const csvSlice = createSlice({
     name: "csv",
@@ -15,11 +15,12 @@ const csvSlice = createSlice({
         mcMean: null,
         inverseSigma: null,
         inverseSigmaMean: null,
+        shapiro: 0
     },
     reducers: {
         setCSVData: (state, action) => {
             state.fileName = action.payload.fileName
-            state.headers = action.payload.headers;
+            state.headers = action.payload.headers?.map(h => h.replace(" ", "_").toLowerCase())
             state.data = action.payload.data;
 
             const spl_r_index = state.headers.indexOf("sample_ratio");
