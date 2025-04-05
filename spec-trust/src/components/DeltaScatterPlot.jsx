@@ -8,11 +8,11 @@ import {
     CartesianGrid,
     Tooltip,
     ResponsiveContainer,
-    ErrorBar, Legend
+    ErrorBar
 } from "recharts";
 
 export default function DeltaScatterPlot() {
-    const { fileName, delta, deltaSe, sd, inverseSigma, sdMean, inverseSigmaMean, mc, mcMean } = useSelector((state) => state.csv);
+    const { fileName, delta, deltaSe, sd, inverseSigma, mc } = useSelector((state) => state.csv);
 
     const chartData = [
         ...delta.map((value, index) => ({
@@ -24,22 +24,22 @@ export default function DeltaScatterPlot() {
         })),
         {
             x: delta.length + 1,
-            y: sdMean,
-            error: sd,
+            y: sd.mean,
+            error: sd.uncertainty,
             label: "SD",
             color: "#6ca6cd",
         },
         {
             x: delta.length + 2,
-            y: inverseSigmaMean,
-            error: inverseSigma,
+            y: inverseSigma.mean,
+            error: inverseSigma.uncertainty,
             label: "Inverse Sigma",
             color: "#ad7f97",
         },
         {
             x: delta.length + 3,
-            y: mcMean,
-            error: mc,
+            y: mc.mean,
+            error: mc.uncertainty,
             label: "MC",
             color: "#ff8f89",
         }

@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { setCSVData, setError } from "../redux/csvSlice.js";
+import {analyzeCSV, setCSVData, setError} from "../redux/csvSlice.js";
 import Papa from "papaparse";
 
 export default function CSVUploader() {
@@ -44,11 +44,8 @@ export default function CSVUploader() {
                     return;
                 }
 
-                dispatch(setCSVData({
-                    fileName: file.name.split(".")[0],
-                    headers,
-                    data: transposedData,
-                }));
+                dispatch(analyzeCSV({ fileName: file.name.split(".")[0], headers: headers, data: transposedData }));
+
             },
             skipEmptyLines: true,
         });

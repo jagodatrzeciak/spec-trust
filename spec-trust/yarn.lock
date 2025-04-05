@@ -3594,11 +3594,6 @@ jackspeak@^3.1.2:
   optionalDependencies:
     "@pkgjs/parseargs" "^0.11.0"
 
-jerzy@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/jerzy/-/jerzy-0.2.1.tgz#64a13bca8280946f102ffc6ba4c35d07364fc6bc"
-  integrity sha512-NHuYTuLgwwBrGKNORh+mSqnvJUeXe9OX9HLP60CT4iRQPgi+OPKBjThOLvwc5SA4yfjTQ/RpyhPfczfavS+Gsg==
-
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz"
@@ -4687,7 +4682,7 @@ redux-observable@^3.0.0-rc.2:
 
 redux-thunk@^3.1.0:
   version "3.1.0"
-  resolved "https://registry.npmjs.org/redux-thunk/-/redux-thunk-3.1.0.tgz"
+  resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-3.1.0.tgz#94aa6e04977c30e14e892eae84978c1af6058ff3"
   integrity sha512-NW2r5T6ksUKXCabzhL9z+h206HQw/NJkcLm1GPImRQ8IzfXwRGqjVhKJGauHirT0DAuyy6hjdnMZaRoAcy0Klw==
 
 redux@^5.0.1:

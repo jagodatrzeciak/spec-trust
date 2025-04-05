@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import {setCSVData, setError} from "../redux/csvSlice.js";
+import {analyzeCSV, setCSVData, setError} from "../redux/csvSlice.js";
 import {useEffect, useState} from "react";
 import Spreadsheet from "react-spreadsheet";
 
@@ -23,11 +23,7 @@ export default function SpreadsheetComponent() {
         }
 
         dispatch(setError({ error: "" }))
-        dispatch(setCSVData({
-            fileName: "manual_input",
-            headers: requiredColumns,
-            data: columnData
-        }));
+        dispatch(analyzeCSV({ fileName: "manual_input", headers: requiredColumns, data: columnData }));
     }
 
     useEffect(() => {

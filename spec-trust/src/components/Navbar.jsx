@@ -1,9 +1,4 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-
 export default function Navbar() {
-    const dispatch = useDispatch();
-
     return (
         <nav className={"navbar navbar-light bg-light d-flex justify-content-between px-3"}>
             <a className="navbar-brand d-flex align-items-center">
