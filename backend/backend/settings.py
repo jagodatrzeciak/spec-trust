@@ -25,9 +25,9 @@ SECRET_KEY = 'django-insecure-d)6*arktio%(on)y(^b6dbgv1d4apqo9$pbey-yu$78d&xvq_t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["https://spec-trust.vercel.app",
-                 "http://localhost:5173",
-                 "spec-trust.onrender.com"]
+ALLOWED_HOSTS = ["spec-trust.onrender.com",
+                 "localhost",
+                 "127.0.0.1"]
 
 
 # Application definition
@@ -130,5 +130,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOWED_ORIGINS = [
     "https://spec-trust.vercel.app",
     "http://localhost:5173",
-    "spec-trust.onrender.com"
 ]

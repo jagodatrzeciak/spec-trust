@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import {analyzeCSV, setCSVData, setError} from "../redux/csvSlice.js";
+import {analyzeCSV, setError} from "../redux/csvSlice.js";
 import {useEffect, useState} from "react";
 import Spreadsheet from "react-spreadsheet";
 

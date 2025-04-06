@@ -7,13 +7,15 @@ import SpreadsheetComponent from "./components/SpreadsheetComponent.jsx";
 import CSVUploader from "./components/CSVUplader.jsx";
 import {useState} from "react";
 import ShapiroResult from "./components/ShapiroResult.jsx";
+import {ClipLoader} from "react-spinners";
 
 
 function App() {
     const error = useSelector((state) => state.csv.error)
     const [ activeTab, setActiveTab ] = useState("manual")
-    const { headers, data, delta, deltaSe } = useSelector((state) => state.csv)
+    const { headers, data, delta, deltaSe, isLoading } = useSelector((state) => state.csv)
 
+    console.log(isLoading)
     return (
         <div>
             <div>
@@ -49,7 +51,7 @@ function App() {
                     <div className="col-3">
                         <img
                             src="/spectrust_gif.gif"
-                            alt="Cat GIF"
+                            alt="Instruction GIF"
                             style={{ width: "100%"}}
                         />
                     </div>
@@ -57,30 +59,51 @@ function App() {
 
                 {error && <h6 className="text-danger mt-2">{error}</h6>}
             </div>
-            <div className="d-flex justify-content-center col-7 mt-3">
-                <div className="d-flex gap-3">
-                    <div><span className="legend-dot sd"></span> SD</div>
-                    <div><span className="legend-dot inverse-sigma"></span> Inverse Sigma</div>
-                    <div><span className="legend-dot mc"></span> MC</div>
+            {isLoading ? (
+                <div
+                    className="d-flex justify-content-center align-items-center"
+                    style={{ height: "150px" }}
+                >
+                    <ClipLoader color="#ff8f89" size={80} />
                 </div>
-            </div>
-            <div className="d-flex flex-row align-items-center justify-content-center mt-1 p-0">
-                <div className="col-6 me-2">
-                    {!error && <DeltaScatterPlot/>}
+            ) : (
+                <div>
+                    <div className="d-flex justify-content-center col-7 mt-3">
+                        <div className="d-flex gap-3">
+                            <div><span className="legend-dot sd"></span> SD</div>
+                            <div><span className="legend-dot inverse-sigma"></span> Inverse Sigma</div>
+                            <div><span className="legend-dot mc"></span> MC</div>
+                        </div>
+                    </div>
+                    <div className="d-flex flex-row align-items-center justify-content-center mt-1 p-0">
+                        <div className="col-6 me-2">
+                            {!error && <DeltaScatterPlot/>}
+                        </div>
+                        <div className="col-5 mt-1">
+                            <p>The first method calculates the mean and sample <strong className="sd">standard deviation </strong>of the δ values. This is a measure of the uncertainty of δ without considering their individual errors.</p>
+                            <p>The <strong className="inverse-sigma">Inverse-σ method</strong> uses the individual δ standard errors (SE<sub>δ</sub>) as weights to calculate weighted mean. Measurements with lower SE contribute more to the mean, while less precise measurements contribute less.</p>
+                            <p>The <strong className="mc">MC method</strong> uses Monte Carlo simulations to estimate uncertainty. It generates thousands of noisy δ datasets by randomly adding measurement errors, computes the standard deviation of each, and averages them.</p>
+                        </div>
+                    </div>
+                    {!error && <div className="row mt-3 ms-5 col-11">
+                        <div className="col-6">
+                            <ShapiroResult />
+                        </div>
+                        <div className="col-6 mt-1 d-flex justify-content-center align-items-center">
+                            {delta.length === 0 ? null : <img
+                                src="/violin_plot.svg"
+                                alt="Half Violin Plot"
+                                className="img-fluid"
+                                style={{ maxHeight: "300px" }}
+                            />}
+                        </div>
+                    </div>}
+                    <div className="ms-5 mt-3 mb-5">
+                        {!error && data?.[0]?.length > 0 &&
+                            <CSVTable headers={headers} data={data} delta={delta} deltaSe={deltaSe}/>}
+                    </div>
                 </div>
-                <div className="col-5 mt-1">
-                    <p>The first method calculates the mean and sample <strong className="sd">standard deviation </strong>of the δ values. This is a measure of the uncertainty of δ without considering their individual errors.</p>
-                    <p>The <strong className="inverse-sigma">Inverse-σ method</strong> uses the individual δ standard errors (SE<sub>δ</sub>) as weights to calculate weighted mean. Measurements with lower SE contribute more to the mean, while less precise measurements contribute less.</p>
-                    <p>The <strong className="mc">MC method</strong> uses Monte Carlo simulations to estimate uncertainty. It generates thousands of noisy δ datasets by randomly adding measurement errors, computes the standard deviation of each, and averages them.</p>
-                </div>
-            </div>
-            <div className={"ms-5 mt-3 col-8"}>
-                {!error && <ShapiroResult/>}
-            </div>
-            <div className="ms-5 mt-3 mb-5">
-                {!error && data?.[0]?.length > 0 &&
-                    <CSVTable headers={headers} data={data} delta={delta} deltaSe={deltaSe}/>}
-            </div>
+            )}
         </div>
     )
 }

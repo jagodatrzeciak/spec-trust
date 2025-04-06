@@ -26,7 +26,8 @@ const csvSlice = createSlice({
         shapiro: {
             static: null,
             p: null
-        }
+        },
+        isLoading: false
     },
     reducers: {
         setCSVData: (state, action) => {
@@ -42,12 +43,16 @@ const csvSlice = createSlice({
         },
         setError: (state, action) => {
             state.error = action.payload.error;
-        }
+        },
+        setLoading: (state, action) => {
+            state.isLoading = action.payload;
+        },
     },
 });
 
 export const analyzeCSV = ({ fileName, headers, data }) => async dispatch => {
     try {
+        dispatch(setLoading(true));
         const formattedHeaders = headers.map(h => h.replace(" ", "_").toLowerCase());
 
         const response = await fetch(API_BASE + "analyze/", {
@@ -75,8 +80,10 @@ export const analyzeCSV = ({ fileName, headers, data }) => async dispatch => {
         }
     } catch (error) {
         dispatch(setError(error.toString()));
+    } finally {
+        dispatch(setLoading(false));
     }
 };
 
-export const { setCSVData, setError } = csvSlice.actions;
+export const { setCSVData, setError, setLoading } = csvSlice.actions;
 export default csvSlice.reducer;
