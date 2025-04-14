@@ -10,8 +10,9 @@
 
 ### Automated Delta and Uncertainty Calculations
 - Calculates δ values using bracketing method according to the following equation
-  $$
-  \delta_s (‰) = \left[ \frac{\left(\frac{^{82}\text{Se}}{^{78}\text{Se}}\right)_s}{\frac{1}{2} \left( \left(\frac{^{82}\text{Se}}{^{78}\text{Se}}\right)_{b_1} + \left(\frac{^{82}\text{Se}}{^{78}\text{Se}}\right)_{b_2} \right)} - 1 \right] \times 1000
+  ```math
+    \delta_s (‰) = \left[ \frac{\left(\frac{^{82}\text{Se}}{^{78}\text{Se}}\right)_s}{\frac{1}{2} \left( \left(\frac{^{82}\text{Se}}{^{78}\text{Se}}\right)_{b_1} + \left(\frac{^{82}\text{Se}}{^{78}\text{Se}}\right)_{b_2} \right)} - 1 \right] \times 1000
+  ```
   $$
   Where:
   - $ \left( \frac{^{82}\text{Se}}{^{78}\text{Se}} \right)_s $ is the measured isotope ratio of the sample
