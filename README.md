@@ -10,13 +10,13 @@
 
 ### Automated Delta and Uncertainty Calculations
 - Calculates δ values using bracketing method according to the following equation
-  <p align="center">
-    <img src="assets/delta_equation.png" alt="Delta equation" style="max-width: 400px; display: block; margin: 0 auto;" />
+  <p>
+    <img src="assets/delta_equation.png" alt="Delta equation" style="max-width: 400px; display: block; margin: 0;" />
   </p>
   
 - Computes propagated standard error SE(δ) using
-  <p align="center">
-    <img src="assets/sd_equation.png" alt="SD equation" style="max-width: 350px; display: block; margin: 0 auto;" />
+  <p>
+    <img src="assets/sd_equation.png" alt="SD equation" style="max-width: 350px; display: block; margin: 0;" />
   </p>
 
 
