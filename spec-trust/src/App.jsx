@@ -91,7 +91,7 @@ function App() {
                         </div>
                         <div className="col-6 mt-1 d-flex justify-content-center align-items-center">
                             {delta.length === 0 ? null : <img
-                                src="/violin_plot.svg"
+                                src="https://spec-trust.onrender.com/media/violin_plot.svg"
                                 alt="Half Violin Plot"
                                 className="img-fluid"
                                 style={{ maxHeight: "300px" }}

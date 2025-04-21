@@ -65,7 +65,7 @@ class AnalyzeDataView(APIView):
         ax.grid(True, linestyle="--", alpha=0.5)
 
         plt.tight_layout()
-        plt.savefig(os.path.join(BASE_DIR, "spec-trust", "public", "violin_plot.svg"))
+        plt.savefig(os.path.join(settings.MEDIA_ROOT, 'violin_plot.svg'))
 
     def post(self, request):
         try:
