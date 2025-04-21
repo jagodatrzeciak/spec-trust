@@ -4,7 +4,7 @@ import CSVTable from "./components/CSVTable.jsx";
 import {useSelector} from "react-redux";
 import DeltaScatterPlot from "./components/DeltaScatterPlot.jsx";
 import SpreadsheetComponent from "./components/SpreadsheetComponent.jsx";
-import CSVUploader from "./components/CSVUplader.jsx";
+import CSVUploader from "./components/CSVUploader.jsx";
 import {useState} from "react";
 import ShapiroResult from "./components/ShapiroResult.jsx";
 import {ClipLoader} from "react-spinners";
@@ -91,7 +91,7 @@ function App() {
                         </div>
                         <div className="col-6 mt-1 d-flex justify-content-center align-items-center">
                             {delta.length === 0 ? null : <img
-                                src="https://spec-trust.onrender.com/media/violin_plot.svg"
+                                src="/violin_plot.svg"
                                 alt="Half Violin Plot"
                                 className="img-fluid"
                                 style={{ maxHeight: "300px" }}
