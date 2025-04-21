@@ -10,10 +10,16 @@
 
 ### Automated Delta and Uncertainty Calculations
 - Calculates δ values using bracketing method according to the following equation
-  ![delta_equation.png](assets/delta_equation.png)
-
+  <p align="center">
+    <img src="assets/delta_equation.png" alt="Delta equation" style="max-width: 400px; display: block; margin: 0 auto;" />
+  </p>
+  
 - Computes propagated standard error SE(δ) using
-  ![sd_equation.png](assets/sd_equation.png)
+  <p align="center">
+    <img src="assets/sd_equation.png" alt="SD equation" style="max-width: 350px; display: block; margin: 0 auto;" />
+  </p>
+
+
 ### Statistical validation
 **Shapiro–Wilk** test is applied to assess whether the distribution of δ values can be considered normally distributed. This evaluation supports the underlying statistical assumptions required for parametric analyses and model-based inference. The null hypothesis (H₀) assumes normality (Δ ∼ 𝒩), while the alternative hypothesis (H₁) suggests otherwise. A sufficiently high p-value indicates that δ values do not significantly deviate from a normal distribution.
 
