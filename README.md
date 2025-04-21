@@ -49,7 +49,15 @@ The application implements three rigorous statistical approaches to summarize ov
         <img src="assets/scatter_plot_example.png" alt="Scatter plot" style="max-width: 500px; display: block; margin: 0 auto;" />
     </p>
  
-  
+### Exemplary datasets
+All of our exemplary datasets can be found  [here](https://drive.google.com/drive/u/2/folders/1DtlCLSTYBFxZo53G3e6bvQxm-fFPMsSm).
+- **BC10a**- based on selenium isotope ratio measurements (⁸²Se/⁷⁸Se) in wheat flour reference material certified for selenium content,
+- **asw_selenium**- selenium isotope ratio data measured in artificial seawater matrix, prepared for selenium-specific analysis,
+- **asw_uranium**- uranium isotope ratio data (²³⁵U/²³⁸U) measured in a separate artificial seawater matrix, tailored for uranium analysis,
+- **woda**- natural water samples (1 and 2) analyzed after uranium separation; used to assess recovery and matrix effects,
+- **ume2**- uranium isotope ratio data from the UME2 certified standard, a well-characterized uranium reference material,
+- **u3o8**- solid uranium oxide (U₃O₈) samples analyzed for both uranium content and isotopic composition.
+
 ## Step-by-Step Instructions
 ### 1. Launch the App
 Visit https://spec-trust.vercel.app
