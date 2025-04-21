@@ -10,26 +10,10 @@
 
 ### Automated Delta and Uncertainty Calculations
 - Calculates δ values using bracketing method according to the following equation
-  $$
-  \delta_s (\permil) = \left[ \frac {\left( \frac{^{82}\text{Se}}{^{78}\text{Se}} \right)_s} {\frac{1}{2} \left( \left( \frac{^{82}\text{Se}}{^{78}\text{Se}} \right)_{b_1} + \left( \frac{^{82}\text{Se}}{^{78}\text{Se}} \right)_{b_2} \right)} - 1 \right] \times 1000
-  $$
-  Where:
-  - $\left( \frac{^{82}\text{Se}}{^{78}\text{Se}} \right)_s$ is the measured isotope ratio of the sample
-  - $\left( \frac{^{82}\text{Se}}{^{78}\text{Se}} \right)_{b_1}$ and $\left( \frac{^{82}\text{Se}}{^{78}\text{Se}} \right)_{b_2}$ are the measured isotope ratios of the two bracketing standards
-  
-  The result is multiplied by 1000 to express the deviation in parts per thousand (‰).
-
+  ![delta_equation.png](assets/delta_equation.png)
 
 - Computes propagated standard error SE(δ) using
-
-    $$
-    SD_\delta \approx 10^3 \cdot \left| \frac{2 \cdot \mu_s}{\mu_{b_1} + \mu_{b_2}} \right| \cdot \sqrt{ \left( \frac{\sigma_s}{\mu_s} \right)^2 + \left( \frac{ \sqrt{\sigma_{b_1}^2 + \sigma_{b_2}^2} }{ \mu_{b_1} + \mu_{b_2} } \right)^2 }
-    $$
-    Where:
-    - $ \mu_{s} $ is the measured sample ratio
-    - $ \mu_{b1}$, $ \mu_{b2} $ are the ratios of the bracketing standards
-    - $ \sigma_{s} $, $ \sigma_{b1} $, $ \sigma_{b2} $ are their corresponding standard errors
-
+  ![sd_equation.png](assets/sd_equation.png)
 ### Statistical validation
 **Shapiro–Wilk** test is applied to assess whether the distribution of δ values can be considered normally distributed. This evaluation supports the underlying statistical assumptions required for parametric analyses and model-based inference. The null hypothesis (H₀) assumes normality (Δ ∼ 𝒩), while the alternative hypothesis (H₁) suggests otherwise. A sufficiently high p-value indicates that δ values do not significantly deviate from a normal distribution.
 
