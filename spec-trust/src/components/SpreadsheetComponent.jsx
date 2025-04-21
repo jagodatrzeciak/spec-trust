@@ -10,6 +10,7 @@ export default function SpreadsheetComponent() {
     const [ data, setData ] = useState(
         Array(5).fill(requiredColumns.map(() => ({value: ""})))
     )
+    const [sampleName, setSampleName] = useState(null)
 
     const validateAndSave = () => {
         const cleaned = data.filter(row => row.some(cell => cell?.value?.toString().trim() !== ""))
@@ -23,7 +24,7 @@ export default function SpreadsheetComponent() {
         }
 
         dispatch(setError({ error: "" }))
-        dispatch(analyzeCSV({ fileName: "manual_input", headers: requiredColumns, data: columnData }));
+        dispatch(analyzeCSV({ fileName: sampleName ? sampleName : "manual_input", headers: requiredColumns, data: columnData }));
     }
 
     useEffect(() => {
@@ -36,15 +37,33 @@ export default function SpreadsheetComponent() {
 
     return (
         <div>
-            <Spreadsheet data={data} onChange={setData} columnLabels={requiredColumns}/>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <label htmlFor="sampleName" style={{ whiteSpace: 'nowrap' }}>Sample Name:</label>
+                <input
+                    id="sampleName"
+                    type="text"
+                    className="form-control"
+                    style={{ width: '250px' }}
+                    value={sampleName}
+                    onChange={(e) => setSampleName(e.target.value)}
+                />
+            </div>
+            <Spreadsheet data={data} onChange={setData} columnLabels={requiredColumns} className="mt-2"/>
             <h6>Exemplary datasets:</h6>
             <div className="row col-10 ms-1">
                 <button className="btn btn-secondary col-2 me-2" onClick={() => loadDataset("bc210a")}>BC210a</button>
-                <button className="btn btn-secondary col-3 me-2" onClick={() => loadDataset("asw")}>ASW (selenium)</button>
+                <button className="btn btn-secondary col-3 me-2" onClick={() => loadDataset("asw")}>ASW (selenium)
+                </button>
                 <button className="btn btn-secondary col-2" onClick={() => loadDataset("ume2")}>UME2</button>
             </div>
-            <div className="mt-1">You can find more exemplary datasets <a href="https://drive.google.com/drive/folders/1DtlCLSTYBFxZo53G3e6bvQxm-fFPMsSm?usp=drive_link" target="_blank" rel="noopener noreferrer">here</a>.</div>
-            <div>Dataset descriptions can be found in our <a href="https://github.com/jagodatrzeciak/spec-trust/blob/main/README.md" target="_blank" rel="noopener noreferrer">README</a> file.</div>
+            <div className="mt-1">You can find more exemplary datasets <a
+                href="https://drive.google.com/drive/folders/1DtlCLSTYBFxZo53G3e6bvQxm-fFPMsSm?usp=drive_link"
+                target="_blank" rel="noopener noreferrer">here</a>.
+            </div>
+            <div>Dataset descriptions can be found in our <a
+                href="https://github.com/jagodatrzeciak/spec-trust/blob/main/README.md" target="_blank"
+                rel="noopener noreferrer">README</a> file.
+            </div>
         </div>
     );
 }
