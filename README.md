@@ -10,8 +10,10 @@
 
 ### Automated Delta and Uncertainty Calculations
 - Calculates δ values using bracketing method according to the following equation
-$$\delta_s (\permil) = \left[ \frac {\left( \frac{^{82}\text{Se}}{^{78}\text{Se}} \right)_s} {\frac{1}{2} \left( \left( \frac{^{82}\text{Se}}{^{78}\text{Se}} \right)_{b_1} + \left( \frac{^{82}\text{Se}}{^{78}\text{Se}} \right)_{b_2} \right)} - 1 \right] \times 1000$$
-Where:
+  $$
+  \delta_s (\permil) = \left[ \frac {\left( \frac{^{82}\text{Se}}{^{78}\text{Se}} \right)_s} {\frac{1}{2} \left( \left( \frac{^{82}\text{Se}}{^{78}\text{Se}} \right)_{b_1} + \left( \frac{^{82}\text{Se}}{^{78}\text{Se}} \right)_{b_2} \right)} - 1 \right] \times 1000
+  $$
+  Where:
   - $\left( \frac{^{82}\text{Se}}{^{78}\text{Se}} \right)_s$ is the measured isotope ratio of the sample
   - $\left( \frac{^{82}\text{Se}}{^{78}\text{Se}} \right)_{b_1}$ and $\left( \frac{^{82}\text{Se}}{^{78}\text{Se}} \right)_{b_2}$ are the measured isotope ratios of the two bracketing standards
   
