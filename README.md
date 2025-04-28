@@ -11,12 +11,12 @@
 ### Automated Delta and Uncertainty Calculations
 - Calculates δ values using bracketing method according to the following equation
   <p>
-    <img src="assets/delta_equation.png" alt="Delta equation" style="max-width: 400px; display: block; margin: 0;" />
+    <img src="spec-trust/public/delta_equation.png" alt="Delta equation" style="max-width: 400px; display: block; margin: 0;" />
   </p>
   
 - Computes propagated standard error SE(δ) using
   <p>
-    <img src="assets/sd_equation.png" alt="SD equation" style="max-width: 350px; display: block; margin: 0;" />
+    <img src="spec-trust/public/sd_equation.png" alt="SD equation" style="max-width: 350px; display: block; margin: 0;" />
   </p>
 
 
@@ -29,24 +29,24 @@ The application implements three rigorous statistical approaches to summarize ov
     
 - **Standard Deviation of δ** 
 
-    A classic statistical measure that represents the spread of δ values around their mean. It captures the random variation inherent in repeated measurements without taking individual uncertainties into account.
+  A classic statistical measure that quantifies the spread of δ values around their mean. It reflects the total random variability observed across repeated measurements, without considering the individual standard errors associated with each measurement. This method is straightforward but assumes that all δ values have comparable uncertainties.
 - **Inverse-σ Weighted Mean**
 
-  A precision-weighted average of δ values, where measurements with smaller standard errors contribute more heavily. This method yields a more robust central estimate when individual uncertainties vary substantially.
+  This method is an adaptation of the inverse-variance weighted average approach. Instead of using the inverse of the variance (σ²) for weighting, it uses the inverse of the standard deviation (σ). Each δ value is weighted by the reciprocal of its standard deviation, meaning measurements with lower uncertainties contribute more to the final mean. This adjustment improves numerical stability when working with very small δ values and uncertainties, as is common in high-precision isotopic measurements.
 - **Monte Carlo Simulated Uncertainty**
 
-  An empirical method that introduces simulated random noise based on each measurement’s standard error to generate synthetic δ datasets. The average spread of these datasets provides a realistic estimate of total uncertainty.
+  The Monte Carlo approach creates a large number of synthetic datasets by repeatedly adding random noise (drawn from a normal distribution with a standard deviation equal to each measurement's standard error) to the δ values. For each synthetic dataset, a standard deviation of δ values is calculated. After many iterations (e.g., 10,000 simulations), the average of these simulated standard deviations is taken as the Monte Carlo estimate of the total measurement uncertainty.
 
 ### Uncertainty visualization
 
 - **Half violin plot** provides a visual representation of the distribution and spread of δ values and their associated uncertainties. Each violin is centered on a measurement and shaped according to a normal distribution defined by its δ and SE(δ). Summary uncertainty estimates (SD, Inverse Sigma, MC) are also plotted as color-coded violins for comparative purposes.
     <p align="center">
-        <img src="assets/half_violin_plot_example.png" alt="Half Violin Plot" style="max-width: 500px; display: block; margin: 0 auto;" />
+        <img src="spec-trust/public/half_violin_plot_example.png" alt="Half Violin Plot" style="max-width: 500px; display: block; margin: 0 auto;" />
     </p>  
 
 - **Scatter plot with error bars** displays δ values with vertical lines representing ± SE(δ). This plot allows users to assess consistency across measurements, identify outliers, and visually compare replicate data.
     <p align="center">
-        <img src="assets/scatter_plot_example.png" alt="Scatter plot" style="max-width: 500px; display: block; margin: 0 auto;" />
+        <img src="spec-trust/public/scatter_plot_example.png" alt="Scatter plot" style="max-width: 500px; display: block; margin: 0 auto;" />
     </p>
  
 ### Exemplary datasets

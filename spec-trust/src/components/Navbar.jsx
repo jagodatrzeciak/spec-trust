@@ -1,4 +1,10 @@
-export default function Navbar() {
+import {useDispatch} from "react-redux";
+import {setIsShowingModal} from "../redux/csvSlice.js";
+
+export default function Navbar({isShowingModal}) {
+    const dispatch = useDispatch()
+    const handleOpenModal = () => dispatch(setIsShowingModal(true))
+
     return (
         <nav className="navbar navbar-light bg-light d-flex justify-content-between px-3">
             <a className="navbar-brand d-flex align-items-center">
@@ -7,9 +13,9 @@ export default function Navbar() {
                 SpecTrust
             </a>
 
-            <a href="https://github.com/jagodatrzeciak/spec-trust/blob/main/README.md" target="_blank" rel="noopener noreferrer" className="btn btn-outline-secondary">
+            <button className="btn btn-outline-secondary" onClick={handleOpenModal}>
                 README
-            </a>
+            </button>
         </nav>
     );
 }
