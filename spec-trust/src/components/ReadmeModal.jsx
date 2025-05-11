@@ -26,7 +26,7 @@ export default function ReadmeModal({isShowingModal}) {
                         <p>● Calculates δ values using bracketing method according to the following equation</p>
                         <div className="text-center my-4">
                             <img
-                                src="/delta_equation.png"
+                                src="/delta_equation1.png"
                                 alt="Delta calculation equation"
                                 style={{ maxWidth: "100%", height: "auto" }}
                             />
@@ -34,7 +34,7 @@ export default function ReadmeModal({isShowingModal}) {
                         <p>● Computes propagated standard error SE(δ) using</p>
                         <div className="text-center my-4">
                             <img
-                                src="/sd_equation.png"
+                                src="/sd_equation1.png"
                                 alt="SE calculation equation"
                                 style={{ maxWidth: "100%", height: "auto" }}
                             />
@@ -93,7 +93,7 @@ export default function ReadmeModal({isShowingModal}) {
                         <p>● <strong>BC10a</strong>- based on selenium isotope ratio measurements (⁸²Se/⁷⁸Se) in wheat flour reference material certified for selenium content,</p>
                         <p>● <strong>asw_selenium</strong>- selenium isotope ratio data measured in artificial seawater matrix, prepared for selenium-specific analysis,</p>
                         <p>● <strong>asw_uranium</strong>- uranium isotope ratio data (²³⁵U/²³⁸U) measured in a separate artificial seawater matrix, tailored for uranium analysis,</p>
-                        <p>● <strong>woda</strong>- natural water samples (1 and 2) analyzed after uranium separation; used to assess recovery and matrix effects,</p>
+                        <p>● <strong>water_sample</strong>- natural water samples (1 and 2) analyzed after uranium separation; used to assess recovery and matrix effects,</p>
                         <p>● <strong>ume2</strong>- uranium isotope ratio data from the UME2 certified standard, a well-characterized uranium reference material,</p>
                         <p>● <strong>u3o8</strong>- solid uranium oxide (U₃O₈) samples analyzed for both uranium content and isotopic composition.</p>
                     </div>

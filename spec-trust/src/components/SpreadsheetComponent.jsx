@@ -8,6 +8,7 @@ import {datasets} from "../../datasets.js";
 export default function SpreadsheetComponent() {
     const dispatch = useDispatch();
     const requiredColumns = ["Standard I", "Standard I SE", "Sample", "Sample SE", "Standard II", "Standard II SE"];
+    const [isDisabled, setIsDisabled] = useState(false)
     const [ data, setData ] = useState(
         Array(5).fill(requiredColumns.map(() => ({value: ""})))
     )
@@ -37,7 +38,11 @@ export default function SpreadsheetComponent() {
     }, [sampleName]);
 
     function loadDataset(name) {
+        setIsDisabled(true);
         setData(datasets[name])
+        setTimeout(() => {
+            setIsDisabled(false);
+        }, 2000);
     }
 
     return (
@@ -64,8 +69,8 @@ export default function SpreadsheetComponent() {
                 </div>
                 <h6>Exemplary datasets:</h6>
                 <div className="row col-11 ms-1">
-                    <button className="btn btn-secondary col-2 me-2" onClick={() => loadDataset("bc210a")}>BC210a</button>
-                    <button className="btn btn-secondary col-3 me-2" onClick={() => loadDataset("asw")}>ASW (selenium)
+                    <button className="btn btn-secondary col-2 me-2" disabled={isDisabled} onClick={() => loadDataset("bc210a")}>BC210a</button>
+                    <button className="btn btn-secondary col-3 me-2" disabled={isDisabled} onClick={() => loadDataset("asw")}>ASW (selenium)
                     </button>
                     <button className="btn btn-secondary col-2" onClick={() => loadDataset("ume2")}>UME2</button>
                 </div>

@@ -48,11 +48,10 @@ class AnalyzeDataView(APIView):
 
             ax.fill_betweenx(x_vals, i + pdf_vals / pdf_vals.max() * 0.4, i,
                      facecolor='grey', alpha=0.5)
-        ax.errorbar(np.arange(0, len(delta)), delta, yerr=delta_se, fmt='o', color='black', capsize=5, markersize=5)
 
         stats = [
             ("SD", sd_mean, sd, '#6ca6cd'),
-            ("Inverse Sigma", inverse_sigma_mean, inverse_sigma, '#ad7f97'),
+            ("Inverse-σ", inverse_sigma_mean, inverse_sigma, '#ad7f97'),
             ("MC", mc_mean, mc, '#ff8f89')
         ]
 
@@ -63,7 +62,6 @@ class AnalyzeDataView(APIView):
             index = offset + j
             ax.fill_betweenx(x_vals, index + pdf_vals / pdf_vals.max() * 0.4, index,
                          facecolor=color, alpha=0.5, label=label)
-        ax.errorbar(np.arange(len(delta), len(delta) + 3), [stats[0][1], stats[1][1], stats[2][1]], yerr=[stats[0][2], stats[1][2], stats[2][2]], fmt='o', color='black', capsize=5, markersize=5)
 
         box_data = []
         for mu, sigma in zip(delta, delta_se):
@@ -88,7 +86,7 @@ class AnalyzeDataView(APIView):
 
         x_axis = np.arange(1, len(delta) + 1)
         xtick_positions = [i - 1 for i in list(x_axis) + [x_axis[-1] + 1, x_axis[-1] + 2, x_axis[-1] + 3]]
-        xtick_labels = [str(i) for i in range(1, len(delta) + 1)] + ["SD", "Inverse Sigma", "MC"]
+        xtick_labels = [str(i) for i in range(1, len(delta) + 1)] + ["SD", "Inverse-σ", "MC"]
 
         ax.set_xticks(xtick_positions)
         ax.set_xticklabels(xtick_labels)
@@ -109,7 +107,7 @@ class AnalyzeDataView(APIView):
     def generate_scatter_plot(self, delta, delta_se, sd_mean, sd, inverse_sigma_mean, inverse_sigma, mc_mean, mc):
         stats = [
             ("SD", sd_mean, sd, '#6ca6cd'),
-            ("Inverse Sigma", inverse_sigma_mean, inverse_sigma, '#ad7f97'),
+            ("Inverse-σ", inverse_sigma_mean, inverse_sigma, '#ad7f97'),
             ("MC", mc_mean, mc, '#ff8f89')
         ]
 
@@ -122,7 +120,7 @@ class AnalyzeDataView(APIView):
             ax.errorbar(x_axis[-1] + i + 1, stats[i][1], yerr=stats[i][2], fmt='o', color=stats[i][3], label=stats[i][0], capsize=4)
 
         xtick_positions = list(x_axis) + [x_axis[-1] + 1, x_axis[-1] + 2, x_axis[-1] + 3]
-        xtick_labels = [str(i) for i in range(1, len(delta) + 1)] + ["SD", "Inverse Sigma", "MC"]
+        xtick_labels = [str(i) for i in range(1, len(delta) + 1)] + ["SD", "Inverse-σ", "MC"]
 
         ax.set_xticks(xtick_positions)
         ax.set_xticklabels(xtick_labels)
@@ -136,7 +134,7 @@ class AnalyzeDataView(APIView):
         ax.grid(True, linestyle='--', alpha=0.7)
         custom_lines = [
             mlines.Line2D([], [], color='#6ca6cd', marker='o', linestyle='None', markersize=8, label='SD'),
-            mlines.Line2D([], [], color='#ad7f97', marker='o', linestyle='None', markersize=8, label='Inverse Sigma'),
+            mlines.Line2D([], [], color='#ad7f97', marker='o', linestyle='None', markersize=8, label='Inverse-σ'),
             mlines.Line2D([], [], color='#ff8f89', marker='o', linestyle='None', markersize=8, label='MC')
         ]
 
@@ -148,7 +146,7 @@ class AnalyzeDataView(APIView):
         )
 
         plt.tight_layout()
-        plt.savefig(os.path.join(MEDIA_ROOT, 'scatter_plot.png'))
+        plt.savefig(os.path.join(MEDIA_ROOT, 'scatter_plot_example.png'))
         plt.savefig(os.path.join(MEDIA_ROOT, 'scatter_plot.pdf'))
 
     def post(self, request):

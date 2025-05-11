@@ -54,7 +54,7 @@ All of our exemplary datasets can be found  [here](https://drive.google.com/driv
 - **BC10a**- based on selenium isotope ratio measurements (⁸²Se/⁷⁸Se) in wheat flour reference material certified for selenium content,
 - **asw_selenium**- selenium isotope ratio data measured in artificial seawater matrix, prepared for selenium-specific analysis,
 - **asw_uranium**- uranium isotope ratio data (²³⁵U/²³⁸U) measured in a separate artificial seawater matrix, tailored for uranium analysis,
-- **woda**- natural water samples (1 and 2) analyzed after uranium separation; used to assess recovery and matrix effects,
+- **water_sample**- natural water samples (1 and 2) analyzed after uranium separation; used to assess recovery and matrix effects,
 - **ume2**- uranium isotope ratio data from the UME2 certified standard, a well-characterized uranium reference material,
 - **u3o8**- solid uranium oxide (U₃O₈) samples analyzed for both uranium content and isotopic composition.
 

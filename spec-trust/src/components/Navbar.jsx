@@ -13,7 +13,7 @@ export default function Navbar({isShowingModal}) {
                 SpecTrust
             </a>
 
-            <button className="btn btn-outline-secondary" onClick={handleOpenModal}>
+            <button className="btn btn-outline-secondary pulse" onClick={handleOpenModal}>
                 README
             </button>
         </nav>

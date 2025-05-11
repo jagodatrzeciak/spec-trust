@@ -28,8 +28,8 @@ export default function CSVTable({headers, data, delta, deltaSe}) {
                                 {headers.map((header, index) => (
                                     <th key={index}>{header}</th>
                                 ))}
-                                <th>Delta</th>
-                                <th>Delta_SE</th>
+                                <th>delta</th>
+                                <th>delta_SE</th>
                             </tr>
                             </thead>
                             <tbody>
