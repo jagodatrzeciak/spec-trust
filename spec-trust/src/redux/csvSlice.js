@@ -128,7 +128,7 @@ export const createZip = () => async (dispatch, getState) => {
         const violinPngBlob = await fetch(`${import.meta.env.VITE_MEDIA_URL}violin_plot.png`).then(res => res.blob());
         const violinPdfBlob = await fetch(`${import.meta.env.VITE_MEDIA_URL}violin_plot.pdf`).then(res => res.blob());
 
-        zip.file("scatter_plot_example.png", scatterPngBlob);
+        zip.file("scatter_plot.png", scatterPngBlob);
         zip.file("scatter_plot.pdf", scatterPdfBlob);
         zip.file("violin_plot.png", violinPngBlob);
         zip.file("violin_plot.pdf", violinPdfBlob);

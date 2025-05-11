@@ -146,7 +146,7 @@ class AnalyzeDataView(APIView):
         )
 
         plt.tight_layout()
-        plt.savefig(os.path.join(MEDIA_ROOT, 'scatter_plot_example.png'))
+        plt.savefig(os.path.join(MEDIA_ROOT, 'scatter_plot.png'))
         plt.savefig(os.path.join(MEDIA_ROOT, 'scatter_plot.pdf'))
 
     def post(self, request):
