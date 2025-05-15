@@ -10,7 +10,7 @@ export default function Navbar({isShowingModal}) {
             <a className="navbar-brand d-flex align-items-center">
                 <img src="/spectrometer.png" width="30" height="30"
                      className="d-inline-block align-top me-2 ms-2" alt=""/>
-                SpecTrust
+                uCalc-SSB
             </a>
 
             <button className="btn btn-outline-secondary pulse" onClick={handleOpenModal}>

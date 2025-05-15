@@ -29,7 +29,7 @@ export default function CSVTable({headers, data, delta, deltaSe}) {
                                     <th key={index}>{header}</th>
                                 ))}
                                 <th>delta</th>
-                                <th>delta_SE</th>
+                                <th>delta_se</th>
                             </tr>
                             </thead>
                             <tbody>

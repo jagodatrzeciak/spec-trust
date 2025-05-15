@@ -14,11 +14,11 @@ export default function ReadmeModal({isShowingModal}) {
                 <Modal.Header closeButton>
                     <Modal.Title className="d-flex align-items-center gap-2">
                         <img src="/spectrometer.png" alt="SpecTrust" width="30" height="30" />
-                        SpecTrust Instructions
+                        uCalc-SSB Instructions
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <p><strong>SpecTrust</strong> is a web-based application developed for the quantitative analysis and visualization of isotopic measurement uncertainty. It implements statistically rigorous methods—including bracketing-based δ (delta) value computation, uncertainty propagation, inverse-variance weighting, and Monte Carlo simulation—to provide researchers with reproducible, interpretable metrics of analytical precision. The platform supports both manual and batch (CSV-based) data entry and outputs numerical results alongside violin plots and scatter plots for comparative uncertainty assessment. Spec-Trust is designed to enhance transparency and consistency in isotopic data evaluation workflows.</p>
+                    <p><strong>uCalc-SSB</strong> is a web-based application developed for the quantitative analysis and visualization of isotopic measurement uncertainty. It implements statistically rigorous methods—including bracketing-based δ (delta) value computation, uncertainty propagation, inverse-variance weighting, and Monte Carlo simulation—to provide researchers with reproducible, interpretable metrics of analytical precision. The platform supports both manual and batch (CSV-based) data entry and outputs numerical results alongside violin plots and scatter plots for comparative uncertainty assessment. Spec-Trust is designed to enhance transparency and consistency in isotopic data evaluation workflows.</p>
                     <hr/>
                     <h3>Key features:</h3>
                     <h5>1. Automated Delta and Uncertainty Calculations</h5>

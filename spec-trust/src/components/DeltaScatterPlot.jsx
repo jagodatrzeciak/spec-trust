@@ -2,7 +2,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 import {
     ScatterChart,
-    Scatter,
     XAxis,
     YAxis,
     CartesianGrid,
@@ -40,6 +39,16 @@ export default function DeltaScatterPlot() {
                             name="δ ± SE_δ"
                             label={{ value: "δ ± SE_δ", angle: -90, position: "insideLeft", dy: 0, style: { textAnchor: 'middle' } }}
                         />
+                        <text
+                            x="55%"
+                            y="50%"
+                            textAnchor="middle"
+                            dominantBaseline="middle"
+                            fill="#888"
+                            fontSize="30"
+                        >
+                            Provide data
+                        </text>
                     </ScatterChart>
                 </ResponsiveContainer>
             </div> : <div className="mt-4">
