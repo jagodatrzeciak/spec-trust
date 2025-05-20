@@ -13,7 +13,7 @@ export default function Navbar({isShowingModal}) {
                 uCalc-SSB
             </a>
 
-            <button className="btn btn-outline-secondary pulse" onClick={handleOpenModal}>
+            <button className="btn btn-outline-danger pulse" onClick={handleOpenModal}>
                 README
             </button>
         </nav>

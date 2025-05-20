@@ -5,7 +5,7 @@ import {useSelector} from "react-redux";
 import DeltaScatterPlot from "./components/DeltaScatterPlot.jsx";
 import SpreadsheetComponent from "./components/SpreadsheetComponent.jsx";
 import CSVUploader from "./components/CSVUploader.jsx";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import ShapiroResult from "./components/ShapiroResult.jsx";
 import {ClipLoader} from "react-spinners";
 import ReadmeModal from "./components/ReadmeModal.jsx";
@@ -15,6 +15,11 @@ function App() {
     const error = useSelector((state) => state.csv.error)
     const [ activeTab, setActiveTab ] = useState("manual")
     const { fileName, headers, data, delta, deltaSe, sd, inverseSigma, mc, isLoading, isShowingModal } = useSelector((state) => state.csv)
+    const [imgRefreshKey, setImgRefreshKey] = useState(Date.now());
+
+    useEffect(() => {
+        setImgRefreshKey(Date.now())
+    }, [delta])
 
     return (
         <div>
@@ -65,7 +70,15 @@ function App() {
                 <div>
                     <div className="d-flex flex-row align-items-center justify-content-center mt-1 p-0">
                         <div className="col-6 me-3">
-                            {!error && <DeltaScatterPlot/>}
+                            {!error && (delta.length === 0 ? <DeltaScatterPlot/> : <div className="mt-4">
+                                <h5 className="text-center">{fileName !== "manual_input" ? fileName : ""}</h5>
+                                <img
+                                    src={`${import.meta.env.VITE_MEDIA_URL}scatter_plot.png?ts=${imgRefreshKey}`}
+                                    alt="Scatter Plot"
+                                    className="img-fluid"
+                                    style={{ width: "100%", maxHeight: "330px" }}
+                                />
+                            </div>)}
                         </div>
                         <div className="col-5">
                             <p>The first method calculates the mean and sample <strong className="sd">standard deviation </strong>of the δ values. This is a measure of the uncertainty of δ without considering their individual errors.</p>
@@ -81,10 +94,10 @@ function App() {
                             {delta.length === 0 ? null : <div>
                                 <h5 className="text-center">{fileName !== "manual_input" ? fileName : ""}</h5>
                                 <img
-                                src={`${import.meta.env.VITE_MEDIA_URL}violin_plot.png`}
-                                alt="Half Violin Plot"
-                                className="img-fluid"
-                                style={{ maxHeight: "300px" }}
+                                    src={`${import.meta.env.VITE_MEDIA_URL}violin_plot.png?ts=${imgRefreshKey}`}
+                                    alt="Half Violin Plot"
+                                    className="img-fluid"
+                                    style={{ maxHeight: "300px" }}
                                 />
                             </div>}
                         </div>

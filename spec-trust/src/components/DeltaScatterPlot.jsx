@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { useSelector } from "react-redux";
 import {
     ScatterChart,
@@ -9,11 +9,9 @@ import {
 } from "recharts";
 
 export default function DeltaScatterPlot() {
-    const { fileName, delta } = useSelector((state) => state.csv);
-
     return (
         <div className="mb-1">
-            {delta.length === 0 ? <div>
+            <div>
                 <div className="d-flex flex-row align-items-center justify-content-center p-0">
                     <div className="d-flex justify-content-center col-7">
                         <div className="d-flex gap-3">
@@ -51,14 +49,7 @@ export default function DeltaScatterPlot() {
                         </text>
                     </ScatterChart>
                 </ResponsiveContainer>
-            </div> : <div className="mt-4">
-                <h5 className="text-center">{fileName !== "manual_input" ? fileName : ""}</h5>
-                <img src={`${import.meta.env.VITE_MEDIA_URL}scatter_plot.png`}
-                    alt="Scatter Plot"
-                    className="img-fluid"
-                    style={{ width: "100%", maxHeight: "330px" }}
-                />
-                </div>}
+            </div>
         </div>
     );
 }
